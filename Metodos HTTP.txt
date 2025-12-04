@@ -1,1 +1,1 @@
-Añado metodos HTTP
+get post delete
