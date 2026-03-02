@@ -1,0 +1,41 @@
+<odoo>
+    <record id="action_empleado" model="ir.actions.act_window">
+        <field name="name">Repartidores</field>
+        <field name="res_model">repartidor.empleado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_empleado" name="Empleados" parent="menu_base" action="action_empleado" sequence="10"/>
+
+    <record id="view_empleado_tree" model="ir.ui.view">
+        <field name="name">repartidor.empleado.tree</field>
+        <field name="model">repartidor.empleado</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre"/>
+                <field name="apellido"/>
+                <field name="dni"/>
+                <field name="foto" widget="image" class="oe_avatar"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_empleado_form" model="ir.ui.view">
+        <field name="name">repartidor.empleado.form</field>
+        <field name="model">repartidor.empleado</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="apellido"/>
+                        <field name="dni"/>
+                        <field name="foto" widget="image" class="oe_avatar"/>
+                        <field name="tiene_carnet_ciclomotor"/>
+                        <field name="tiene_carnet_furgoneta"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

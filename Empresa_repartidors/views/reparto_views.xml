@@ -1,0 +1,90 @@
+<odoo>
+    <record id="action_reparto" model="ir.actions.act_window">
+        <field name="name">Gestión de Repartos</field>
+        <field name="res_model">repartidor.reparto</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_base" name="Empresa de repartos" sequence="10"/>
+    <menuitem id="menu_reparto_listado" name="Listado de Repartos" parent="menu_base" action="action_reparto" sequence="1"/>
+
+    <record id="view_reparto_tree" model="ir.ui.view">
+        <field name="name">repartidor.reparto.tree</field>
+        <field name="model">repartidor.reparto</field>
+        <field name="arch" type="xml">
+            <tree default_order="urgencia asc, fecha_recepcion asc" decoration-info="state == 'no_salido'" decoration-warning="state == 'en_camino'" decoration-success="state == 'entregado'">
+                <field name="codigo"/>
+                <field name="fecha_recepcion"/>
+                <field name="repartidor_id"/>
+                <field name="vehiculo_id"/>
+                <field name="urgencia"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_reparto_form" model="ir.ui.view">
+        <field name="name">repartidor.reparto.form</field>
+        <field name="model">repartidor.reparto</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="codigo"/>
+                        <field name="repartidor_id"/>
+                        <field name="vehiculo_id"/>
+                        <field name="urgencia"/>
+                        <field name="state"/>
+                        <field name="cliente_emisor_id"/>
+                        <field name="receptor_nombre"/>
+                    </group>
+                    <group>
+                        <field name="fecha_recepcion"/>
+                        <field name="fecha_inicio"/>
+                        <field name="fecha_retorno"/>
+                        <field name="kilometros" string="Kilómetros Previstos"/>
+                        <field name="volumen" string="Volumen Previstos"/>
+                        <field name="peso" string="Peso (kg) Previstos"/>
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_repartos_pendientes" model="ir.actions.report">
+        <field name="name">Repartos Pendientes</field>
+        <field name="model">repartidor.empleado</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Empresa_repartidors.template_repartos_empleado</field>
+        <field name="binding_model_id" ref="model_repartidor_empleado"/>
+    </record>
+
+    <template id="template_repartos_empleado">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="empleado">
+                <t t-call="web.external_layout">
+                    <h2>Pendientes: <span t-field="empleado.nombre"/> <span t-field="empleado.apellido"/></h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Cliente</th>
+                                <th>Urgencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="empleado.reparto_ids.filtered(lambda reparto: reparto.state == 'no_salido')" t-as="reparto">
+                                <tr>
+                                    <td><span t-field="reparto.codigo"/></td>
+                                    <td><span t-field="reparto.cliente_emisor_id.name"/></td>
+                                    <td><span t-field="reparto.urgencia"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

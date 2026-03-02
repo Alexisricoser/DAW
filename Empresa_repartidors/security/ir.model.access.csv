@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_repartidor_empleado,repartidor.empleado,model_repartidor_empleado,base.group_user,1,1,1,1
+access_repartidor_vehiculo,repartidor.vehiculo,model_repartidor_vehiculo,base.group_user,1,1,1,1
+access_repartidor_reparto,repartidor.reparto,model_repartidor_reparto,base.group_user,1,1,1,1
+access_reparto_wizard,reparto.wizard,model_repartidor_crear_reparto_wizard,base.group_user,1,1,1,1

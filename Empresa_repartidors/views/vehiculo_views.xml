@@ -1,0 +1,39 @@
+<odoo>
+    <record id="action_vehiculo" model="ir.actions.act_window">
+        <field name="name">Vehículos</field>
+        <field name="res_model">repartidor.vehiculo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_vehiculo" name="Vehículos" parent="menu_base" action="action_vehiculo" sequence="20"/>
+
+    <record id="view_vehiculo_tree" model="ir.ui.view">
+        <field name="name">repartidor.vehiculo.tree</field>
+        <field name="model">repartidor.vehiculo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tipo"/>
+                <field name="descripcion"/>
+                <field name="matricula"/>
+                <field name="foto" widget="image" class="oe_avatar"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_vehiculo_form" model="ir.ui.view">
+        <field name="name">repartidor.vehiculo.form</field>
+        <field name="model">repartidor.vehiculo</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="tipo"/>
+                        <field name="descripcion"/>
+                        <field name="matricula"/>
+                        <field name="foto" widget="image" class="oe_avatar"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
