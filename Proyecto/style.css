@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+form {
+    background: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+input, textarea, select {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box; 
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+#itemsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tarjeta {
+    background: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-left: 8px solid orange;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tarjeta.completado {
+    border-left-color: green;
+    background-color: #f9f9f9;
+}
+
+.tarjeta h3 {
+    margin: 0 0 5px 0;
+}
+
+.botones {
+    display: flex;
+    gap: 5px;
+}
+
+body.dark-mode {
+    background-color: #222;
+    color: white;
+}
+
+body.dark-mode .tarjeta, body.dark-mode form {
+    background-color: #333;
+    border-color: #444;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ProManager v1.0 | Gestión de Colección</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <header>
+        <h1>MiColección <span id="contador">0/0</span></h1>
+        <div class="controles">
+            <input type="text" id="busqueda" placeholder="Buscar por título...">
+            <select id="filtroEstado">
+                <option value="todos">Todos</option>
+                <option value="pendiente">Pendientes</option>
+                <option value="completado">Completados</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section id="formContainer">
+            <form id="itemForm">
+                <h3>Añadir Nuevo Elemento</h3>
+                <input type="text" id="title" placeholder="Título (mín. 3 caracteres)">
+                <span class="error" id="titleError"></span>
+                
+                <textarea id="description" placeholder="Descripción breve..."></textarea>
+                
+                <select id="category">
+                    <option value="Libro">Libro</option>
+                    <option value="Película">Película</option>
+                    <option value="Videojuego">Videojuego</option>
+                </select>
+                
+                <input type="date" id="date">
+                <button type="submit" id="submitBtn">Guardar Elemento</button>
+            </form>
+        </section>
+
+        <section id="listContainer">
+            <div id="loader" class="hidden">Cargando datos de la API...</div>
+            <div id="itemsGrid"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
